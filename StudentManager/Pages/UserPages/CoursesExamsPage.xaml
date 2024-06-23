@@ -60,7 +60,7 @@
                                 <DataGridTemplateColumn Header="Дата проведения" Width="*" IsReadOnly="False">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <DatePicker x:Name="DatePicker" SelectedDate="{Binding ExamDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <DatePicker SelectedDate="{Binding ExamDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

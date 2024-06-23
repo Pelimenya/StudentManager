@@ -112,7 +112,7 @@ namespace StudentManager.Pages.UserPages
             Exam selectedExam = (Exam)ExamsDataGrid.SelectedItem;
             if (selectedExam != null)
             {
-                selectedExam.ExamDate = DateTime.UtcNow; // Update to current UTC time
+                selectedExam.ExamDate = DateTime.UtcNow; 
                 _context.SaveChanges();
                 RefreshExams(selectedExam.CourseId);
             }
@@ -133,16 +133,23 @@ namespace StudentManager.Pages.UserPages
         {
             try
             {
-                if (CoursesDataGrid.SelectedItem != null)
+                if (ExamsDataGrid.SelectedItem != null)
                 {
-                    Course selectedCourse = (Course)CoursesDataGrid.SelectedItem;
-                    RefreshExams(selectedCourse.CourseId);
+                    Exam selectedExam = (Exam)ExamsDataGrid.SelectedItem;
+                    DateTime selectedDate = selectedExam.ExamDate;
+                    DateTime utcDate = DateTime.SpecifyKind(selectedDate, DateTimeKind.Utc);
+                    selectedExam.ExamDate = utcDate;
+                    _context.SaveChanges();
+                    if (CoursesDataGrid.SelectedItem != null)
+                    {
+                        Course selectedCourse = (Course)CoursesDataGrid.SelectedItem;
+                        RefreshExams(selectedCourse.CourseId);
+                    }
                 }
-                _context.SaveChanges();
             }
-            catch (Exception exc)
+            catch (Exception ex)
             {
-                MessageBox.Show(exc.Message);
+                MessageBox.Show($"An error occurred while saving changes: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
