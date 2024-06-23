@@ -25,7 +25,31 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Resource\Images\" />
+      <None Remove="Resource\Images\icons8-user-groups-100.png" />
+      <Content Include="Resource\Images\Group.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Resource\Images\icons8-test-cheating-100.png" />
+      <Content Include="Resource\Images\Course.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Resource\Images\icons8-staff-64.png" />
+      <Content Include="Resource\Images\UsersManagement.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Resource\Images\Attendance.png" />
+      <None Remove="Resource\Images\Exit.png" />
+      <Content Include="Resource\Images\Exit.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Resource\Images\icons8-attendance-100.png" />
+      <Content Include="Resource\Images\Attendance.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Resource\Images\icons8-about-100.png" />
+      <Content Include="Resource\Images\About.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

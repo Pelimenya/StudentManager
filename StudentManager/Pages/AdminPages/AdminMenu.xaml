@@ -22,27 +22,27 @@
                            Height="auto">
             <mah:HamburgerMenu.ItemsSource>
                 <mah:HamburgerMenuItemCollection>
-                    <mah:HamburgerMenuGlyphItem Glyph="..\Assets\Images\Group.png" Label="Группы и студенты">
+                    <mah:HamburgerMenuGlyphItem Glyph="..\..\Resource\Images\Group.png" Label="Группы и студенты">
                         <mah:HamburgerMenuGlyphItem.Tag>
                             <Frame x:Name="GroupsStudentsFrame" Source=".\GroupsStudentsPage.xaml" NavigationUIVisibility="Hidden" />
                         </mah:HamburgerMenuGlyphItem.Tag>
                     </mah:HamburgerMenuGlyphItem>
-                    <mah:HamburgerMenuGlyphItem Glyph="..\Assets\Images\Course.png" Label="Курсы и экзамены">
+                    <mah:HamburgerMenuGlyphItem Glyph="..\..\Resource\Images\Course.png" Label="Курсы и экзамены">
                         <mah:HamburgerMenuGlyphItem.Tag>
                             <Frame x:Name="CoursesExamsFrame" Source="..\UserPages\CoursesExamsPage.xaml" NavigationUIVisibility="Hidden" />
                         </mah:HamburgerMenuGlyphItem.Tag>
                     </mah:HamburgerMenuGlyphItem>
-                    <mah:HamburgerMenuGlyphItem Glyph="..\Assets\Images\Attendance.png" Label="Успеваемость">
+                    <mah:HamburgerMenuGlyphItem Glyph="..\..\Resource\Images\Attendance.png" Label="Успеваемость">
                         <mah:HamburgerMenuGlyphItem.Tag>
                             <Frame x:Name="AttendanceFrame" Source="..\UserPages\AttendancePage.xaml" NavigationUIVisibility="Hidden" />
                         </mah:HamburgerMenuGlyphItem.Tag>
                     </mah:HamburgerMenuGlyphItem>
-                    <mah:HamburgerMenuGlyphItem Glyph="..\Assets\Images\UsersManagement.png" Label="Пользователи">
+                    <mah:HamburgerMenuGlyphItem Glyph="..\..\Resource\Images\UsersManagement.png" Label="Пользователи">
                         <mah:HamburgerMenuGlyphItem.Tag>
                             <Frame x:Name="UsersManagementFrame" Source=".\UsersManagementPage.xaml" NavigationUIVisibility="Hidden" />
                         </mah:HamburgerMenuGlyphItem.Tag>
                     </mah:HamburgerMenuGlyphItem>
-                    <mah:HamburgerMenuGlyphItem Glyph="..\Assets\Images\Exit.png" Label="Выход">
+                    <mah:HamburgerMenuGlyphItem Glyph="..\..\Resource\Images\Exit.png" Label="Выход">
                         <mah:HamburgerMenuGlyphItem.Tag>
                             <Frame x:Name="LoginPageFrame" Source="#" NavigationUIVisibility="Hidden" />
                         </mah:HamburgerMenuGlyphItem.Tag>
@@ -52,7 +52,7 @@
 
             <mah:HamburgerMenu.OptionsItemsSource>
                 <mah:HamburgerMenuItemCollection>
-                    <mah:HamburgerMenuGlyphItem Glyph="..\Assets\Images\About.png" Label="О программе">
+                    <mah:HamburgerMenuGlyphItem Glyph="..\..\Resource\Images\About.png" Label="О программе">
                         <mah:HamburgerMenuGlyphItem.Tag>
                             <Frame x:Name="AboutPageFrame" Source="..\HomePages\AboutPage.xaml" NavigationUIVisibility="Hidden" />
                         </mah:HamburgerMenuGlyphItem.Tag>

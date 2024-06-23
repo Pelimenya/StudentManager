@@ -5,8 +5,76 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:StudentManager.Pages.AdminPages"
       mc:Ignorable="d"
-      Title="GroupsStudentsPage" Height="450" Width="800">
+      Title="GroupsStudentsPage">
+    
     <Grid>
-        
+        <StackPanel Margin="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <Border Grid.Column="0" Grid.Row="0" Background="{DynamicResource MahApps.Brushes.Accent}" CornerRadius="10" Padding="20" Margin="10" Opacity="0.9">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" Text="Управление группами" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0 0 10 0"/>
+                        <DataGrid Grid.Row="1" x:Name="GroupsDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Margin="0,10,0,0"
+                                  CanUserAddRows="True" CanUserDeleteRows="True" SelectionChanged="GroupsDataGrid_SelectionChanged"
+                                  Background="White" BorderBrush="{x:Null}" RowBackground="#E1F5FE" AlternatingRowBackground="#B3E5FC"
+                                  HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding GroupId}" IsReadOnly="True" Width="*" />
+                                <DataGridTextColumn Header="Имя группы" Binding="{Binding GroupName}" Width="*" />
+                                <DataGridTextColumn Header="Курс" Binding="{Binding CourseNumber}" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Content="Добавить группу" Click="AddGroup_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Изменить группу" Click="EditGroup_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Удалить группу" Click="DeleteGroup_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Сохранить изменения" Click="SaveGroupChanges_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                
+          
+                <Border Grid.Column="1" Grid.Row="0" Background="{DynamicResource MahApps.Brushes.Accent}" CornerRadius="10" Padding="20" Margin="10" Opacity="0.9">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" Text="Управление студентами в группе" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0 0 10 0"/>
+                        <DataGrid Grid.Row="1" x:Name="StudentsDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Margin="0,10,0,0"
+                                  Background="White" BorderBrush="{x:Null}" RowBackground="#E1F5FE" AlternatingRowBackground="#B3E5FC"
+                                  HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding StudentId}" IsReadOnly="True" Width="*"/>
+                                <DataGridTextColumn Header="Полное имя" Binding="{Binding FullName}" Width="*"/>
+                                <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateOfBirth}" Width="*"/>
+                                <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Content="Добавить студента" Click="AddStudent_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Изменить студента" Click="EditStudent_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Удалить студента" Click="DeleteStudent_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Сохранить изменения" Click="SaveStudentChanges_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>
