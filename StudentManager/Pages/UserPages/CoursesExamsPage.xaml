@@ -5,8 +5,75 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:StudentManager.Pages.UserPages"
       mc:Ignorable="d"
-      Title="CoursesExamsPage" Height="450" Width="800">
+      Title="CoursesExamsPage">
     <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
         
-    </Grid>
+                <Border Grid.Column="0" Grid.Row="0" Background="{DynamicResource MahApps.Brushes.Accent}" CornerRadius="10" Padding="20" Margin="10" Opacity="0.9">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" Text="Управление Предметами" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0 0 10 0"/>
+                        <DataGrid Grid.Row="1" x:Name="CoursesDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Margin="0,10,0,0"
+                                  CanUserAddRows="True" CanUserDeleteRows="True" SelectionChanged="CoursesDataGrid_SelectionChanged"
+                                  Background="White" BorderBrush="{x:Null}" RowBackground="#E1F5FE" AlternatingRowBackground="#B3E5FC"
+                                  HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding CourseId}" IsReadOnly="True" Width="*" />
+                                <DataGridTextColumn Header="Название предмета" Binding="{Binding CourseName}" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Content="Добавить предмет" Click="AddCourse_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Изменить предмет" Click="EditCourse_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Удалить предмет" Click="DeleteCourse_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Сохранить изменения" Click="SaveCourseChanges_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+        
+                <Border Grid.Column="1" Grid.Row="0" Background="{DynamicResource MahApps.Brushes.Accent}" CornerRadius="10" Padding="20" Margin="10" Opacity="0.9">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" Text="Управление экзаменами" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0 0 10 0"/>
+                        <DataGrid Grid.Row="1" x:Name="ExamsDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Margin="0,10,0,0"
+                                  Background="White" BorderBrush="{x:Null}" RowBackground="#E1F5FE" AlternatingRowBackground="#B3E5FC"
+                                  HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding ExamId}" IsReadOnly="True" Width="*"/>
+                                <DataGridTextColumn Header="Вид экзамена" Binding="{Binding Grade}" Width="*"/>
+                                <DataGridTemplateColumn Header="Дата проведения" Width="*" IsReadOnly="False">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DatePicker x:Name="DatePicker" SelectedDate="{Binding ExamDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Content="Добавить экзамен" Click="AddExam_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Изменить экзамен" Click="EditExam_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Удалить экзамен" Click="DeleteExam_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Сохранить изменения" Click="SaveExamChanges_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <ComboBox x:Name="GroupComboBox" Grid.Row="2"  Width="120" Height="10" ItemsSource="{Binding Groups}" SelectionChanged="GroupComboBox_SelectionChanged" DisplayMemberPath="GroupName" SelectedValuePath="GroupId" SelectedIndex="0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
 </Page>

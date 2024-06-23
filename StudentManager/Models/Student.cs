@@ -21,8 +21,6 @@ public partial class Student
 
     public virtual ICollection<Contact> Contacts { get; set; } = new List<Contact>();
 
-    public virtual ICollection<Exam> Exams { get; set; } = new List<Exam>();
-
     public virtual Group Group { get; set; } = null!;
 
     public virtual ICollection<Identification> Identifications { get; set; } = new List<Identification>();

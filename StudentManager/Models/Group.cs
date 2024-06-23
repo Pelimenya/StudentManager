@@ -11,5 +11,7 @@ public partial class Group
 
     public int CourseNumber { get; set; }
 
+    public virtual ICollection<Exam> Exams { get; set; } = new List<Exam>();
+
     public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 }

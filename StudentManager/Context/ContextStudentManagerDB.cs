@@ -106,19 +106,18 @@ public partial class ContextStudentManagerDB : DbContext
             entity.Property(e => e.CourseId).HasColumnName("course_id");
             entity.Property(e => e.ExamDate).HasColumnName("exam_date");
             entity.Property(e => e.Grade)
-                .HasMaxLength(2)
+                .HasMaxLength(20)
                 .HasColumnName("grade");
-            entity.Property(e => e.StudentId).HasColumnName("student_id");
+            entity.Property(e => e.Groupid).HasColumnName("groupid");
 
             entity.HasOne(d => d.Course).WithMany(p => p.Exams)
                 .HasForeignKey(d => d.CourseId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Exam_course_id_fkey");
 
-            entity.HasOne(d => d.Student).WithMany(p => p.Exams)
-                .HasForeignKey(d => d.StudentId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Exam_student_id_fkey");
+            entity.HasOne(d => d.Group).WithMany(p => p.Exams)
+                .HasForeignKey(d => d.Groupid)
+                .HasConstraintName("Exam_group_id_fkey");
         });
 
         modelBuilder.Entity<Group>(entity =>

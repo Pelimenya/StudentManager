@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:StudentManager.Pages.UserPages"
       mc:Ignorable="d"
-      Title="AttendancePage" Height="450" Width="800">
+      Title="AttendancePage" >
     <Grid>
         
     </Grid>
