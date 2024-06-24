@@ -48,9 +48,7 @@ public partial class ContextStudentManagerDB : DbContext
 
             entity.Property(e => e.AttendanceId).HasColumnName("attendance_id");
             entity.Property(e => e.Date).HasColumnName("date");
-            entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .HasColumnName("status");
+            entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.StudentId).HasColumnName("student_id");
 
             entity.HasOne(d => d.Student).WithMany(p => p.Attendances)

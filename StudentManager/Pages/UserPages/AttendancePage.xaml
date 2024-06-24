@@ -5,8 +5,50 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:StudentManager.Pages.UserPages"
       mc:Ignorable="d"
-      Title="AttendancePage" >
+      Title="AttendancePage">
+    
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок страницы -->
+        <TextBlock Grid.Row="0" Text="Учет присутствия студентов" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,10"/>
+
+        <!-- Форма для ввода присутствия -->
+        <Border Grid.Row="1" Margin="20" Padding="20" BorderBrush="#2196F3" Background="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1" CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Выбор даты -->
+                <TextBlock Foreground="White"  FontSize="15" Grid.Row="0" Text="Выберите дату:" FontWeight="Bold" />
+                <DatePicker x:Name="AttendanceDatePicker" Grid.Row="1" Width="150" Margin="0,5,0,10" SelectedDateChanged="AttendanceDatePicker_SelectedDateChanged" />
+
+                <!-- Список студентов -->
+                <TextBlock Foreground="White" Grid.Row="2" Text="Список студентов на занятии:" FontWeight="Bold" />
+                <DataGrid x:Name="StudentsDataGrid" Grid.Row="3" AutoGenerateColumns="False" Height="200" Margin="0,5,0,10" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding StudentId}" Width="50" />
+                        <DataGridTextColumn Header="Имя студента" Binding="{Binding FullName}" Width="150" />
+                        <DataGridCheckBoxColumn Header="Присутствие" Binding="{Binding IsPresent, Mode=TwoWay}" Width="Auto" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Кнопки управления -->
+                <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+                    <Button Content="Сохранить" Width="100" Margin="5" Background="#2196F3" Foreground="White" Click="SaveAttendance_Click" />
+                    <Button Content="Отчет" Width="100" Margin="5" Background="#2196F3" Foreground="White" Click="GenerateReport_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
