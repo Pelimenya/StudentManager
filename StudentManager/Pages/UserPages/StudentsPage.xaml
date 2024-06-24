@@ -6,10 +6,9 @@
       xmlns:local="clr-namespace:StudentManager.Pages.UserPages"
       mc:Ignorable="d"
       Title="StudentsPage" >
-       <Grid Margin="20">
-        <!-- Existing Grid content for Courses and Exams -->
-        
-        <!-- New Grid for Students -->
+      
+    <Grid Margin="20">
+      
         <Border Grid.Column="2" Grid.Row="0" Background="{DynamicResource MahApps.Brushes.Accent}" CornerRadius="10" Padding="20" Margin="10" Opacity="0.9">
             <Grid>
                 <Grid.RowDefinitions>
@@ -21,8 +20,8 @@
                 <TextBlock Grid.Row="0" Text="Управление студентами" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0 0 10 0" />
                 
                 <!-- DataGrid for Students -->
-           <DataGrid Grid.Row="1" x:Name="StudentsDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Margin="0,10,0,0"
-          CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="StudentsDataGrid_SelectionChanged"
+              <DataGrid Grid.Row="1" x:Name="StudentsDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Margin="0,10,0,0"
+          CanUserAddRows="False" CanUserDeleteRows="False"
           Background="White" BorderBrush="{x:Null}" RowBackground="#E1F5FE" AlternatingRowBackground="#B3E5FC"
           HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
     <DataGrid.Columns>
@@ -31,40 +30,40 @@
         <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateOfBirth, StringFormat=\{0:dd.MM.yyyy\}}" Width="*" />
         <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="*" />
 
-        <!-- DataGridTemplateColumn for Contacts -->
+        
         <DataGridTemplateColumn Header="Контакты" Width="*">
             <DataGridTemplateColumn.CellTemplate>
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding Contacts}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Phone}" Margin="2"/>
+                                <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="2"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-
-        <!-- DataGridTemplateColumn for Identifications -->
+        
         <DataGridTemplateColumn Header="Идентификация" Width="*">
             <DataGridTemplateColumn.CellTemplate>
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding Identifications}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Inn}" Margin="2"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Text="{Binding Inn, UpdateSourceTrigger=PropertyChanged}" Margin="2"/>
+                                    <Button Content="Сохранить" Click="SaveIdentification_Click" Margin="2"/>
+                                </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-
     </DataGrid.Columns>
 </DataGrid>
-                
-                <!-- StackPanel for Student Actions -->
+                <ComboBox Grid.Row="2" x:Name="GroupComboBox" Width="200" Margin="10" DisplayMemberPath="GroupName" SelectedValuePath="GroupId" />
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
                     <Button Content="Добавить студента" Click="AddStudent_Click" Margin="5" Background="#2196F3" Foreground="White" />
                     <Button Content="Изменить студента" Click="EditStudent_Click" Margin="5" Background="#2196F3" Foreground="White" />
@@ -73,8 +72,5 @@
                 </StackPanel>
             </Grid>
         </Border>
-        
-        
-        
     </Grid>
 </Page>

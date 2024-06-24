@@ -12,12 +12,14 @@ namespace StudentManager.Pages.UserPages
     public partial class StudentsPage : Page
     {
         private List<Student> _students;
+        private List<Group> _groups;
         private readonly ContextStudentManagerDB _context = new ContextStudentManagerDB();
 
         public StudentsPage()
         {
             InitializeComponent();
             LoadStudents();
+            LoadGroups();
         }
 
         private void LoadStudents()
@@ -26,13 +28,26 @@ namespace StudentManager.Pages.UserPages
             StudentsDataGrid.ItemsSource = _students;
         }
 
+        private void LoadGroups()
+        {
+            _groups = _context.Groups.ToList();
+            GroupComboBox.ItemsSource = _groups;
+        }
+
         private void AddStudent_Click(object sender, RoutedEventArgs e)
         {
-            // Создаем нового студента
+            if (GroupComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите группу для студента.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            Group selectedGroup = (Group)GroupComboBox.SelectedItem;
+
             Student newStudent = new Student
             {
                 FullName = "Новый студент",
-                GroupId = 1 // Замените это значение на корректное Id группы, к которой принадлежит студент
+                GroupId = selectedGroup.GroupId
             };
 
             _context.Students.Add(newStudent);
@@ -75,6 +90,31 @@ namespace StudentManager.Pages.UserPages
             RefreshStudents();
         }
 
+        private void SaveIdentification_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null)
+            {
+                Student student = (Student)StudentsDataGrid.SelectedItem;
+                if (student != null)
+                {
+                    Identification identification = button.DataContext as Identification;
+                    if (identification != null)
+                    {
+                        try
+                        {
+                            _context.SaveChanges();
+                            RefreshStudents();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Произошла ошибка при сохранении ИИН: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+            }
+        }
+
         private void RefreshStudents()
         {
             _students = _context.Students.ToList();
@@ -82,9 +122,6 @@ namespace StudentManager.Pages.UserPages
             StudentsDataGrid.ItemsSource = _students;
         }
 
-        private void StudentsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Optional: Implement logic if needed
-        }
+       
     }
 }
