@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading; // Добавляем пространство имен Dispatcher
 using Microsoft.EntityFrameworkCore;
 using StudentManager.Context;
 using StudentManager.Models;
@@ -29,7 +30,7 @@ namespace StudentManager.Pages.AdminPages
 
         private void LoadUsers()
         {
-            Users.Clear(); // Очищаем текущую коллекцию перед загрузкой новых данных
+            Users.Clear(); 
             var users = _context.Users.ToList();
             foreach (var user in users)
             {
@@ -39,7 +40,7 @@ namespace StudentManager.Pages.AdminPages
 
         private void LoadRoles()
         {
-            Roles = new ObservableCollection<string> { "admin", "user" }; // Можно загрузить роли из базы данных
+            Roles = new ObservableCollection<string> { "admin", "user" }; 
         }
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
@@ -52,10 +53,13 @@ namespace StudentManager.Pages.AdminPages
                     return;
                 }
 
+                
+                string hashedPassword = HashPassword(PasswordBox.Password);
+
                 var newUser = new User
                 {
                     Username = UsernameTextBox.Text,
-                    Password = PasswordBox.Password,
+                    Password = hashedPassword,
                     Role = RoleComboBox.SelectedValue?.ToString()
                 };
 
@@ -68,6 +72,20 @@ namespace StudentManager.Pages.AdminPages
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+            }
+        }
+
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < hashedBytes.Length; i++)
+                {
+                    builder.Append(hashedBytes[i].ToString("x2"));
+                }
+                return builder.ToString();
             }
         }
 
@@ -84,8 +102,13 @@ namespace StudentManager.Pages.AdminPages
                     }
 
                     SelectedUser.Username = UsernameTextBox.Text;
-                    SelectedUser.Password = PasswordBox.Password;
                     SelectedUser.Role = RoleComboBox.SelectedValue?.ToString();
+
+                    
+                    if (!string.IsNullOrEmpty(PasswordBox.Password))
+                    {
+                        SelectedUser.Password = HashPassword(PasswordBox.Password);
+                    }
 
                     _context.Entry(SelectedUser).State = EntityState.Modified;
                     _context.SaveChanges();
@@ -151,7 +174,7 @@ namespace StudentManager.Pages.AdminPages
         {
             try
             {
-                LoadUsers(); // Перезагружаем пользователей
+                LoadUsers(); 
             }
             catch (Exception ex)
             {
