@@ -37,7 +37,7 @@
                             <Button Content="Добавить предмет" Click="AddCourse_Click" Margin="5" Background="#2196F3" Foreground="White"/>
                             <Button Content="Изменить предмет" Click="EditCourse_Click" Margin="5" Background="#2196F3" Foreground="White"/>
                             <Button Content="Удалить предмет" Click="DeleteCourse_Click" Margin="5" Background="#2196F3" Foreground="White"/>
-                            <Button Content="Сохранить изменения" Click="SaveCourseChanges_Click" Margin="5" Background="#2196F3" Foreground="White"/>
+                            <Button Content="Сохранить" Click="SaveCourseChanges_Click" Margin="5" Background="#2196F3" Foreground="White"/>
                         </StackPanel>
                     </Grid>
                 </Border>

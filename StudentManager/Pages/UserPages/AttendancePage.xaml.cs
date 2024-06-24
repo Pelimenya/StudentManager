@@ -85,7 +85,7 @@ namespace StudentManager.Pages.UserPages
 
         private void GenerateReport_Click(object sender, RoutedEventArgs e)
         {
-            // Логика для генерации отчета о присутствии
+            MessageBox.Show("Находиться в разработке");
         }
     }
 }
