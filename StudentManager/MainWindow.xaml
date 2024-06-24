@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Student manager" Height="900" Width="1600" MinHeight="450" MinWidth="800" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Image Source="./Resource/Images/Logo.png" Margin="0,0,0,0" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="./Pages/HomePages/LoginPage.xaml"></Frame>
     </Grid>
 </mah:MetroWindow>

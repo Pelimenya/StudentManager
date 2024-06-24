@@ -9,7 +9,9 @@
       mc:Ignorable="d"
       Title="LoginPage">
     <Grid>
-        <Border Background="{DynamicResource MahApps.Brushes.Accent}"
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        </StackPanel>
+        <Border Background="#4881f3"
                 CornerRadius="10"
                 Padding="20"
                 HorizontalAlignment="Center"
