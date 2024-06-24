@@ -50,6 +50,10 @@
       <Content Include="Resource\Images\About.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="Resource\Images\Student.png" />
+      <Content Include="Resource\Images\Student.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>

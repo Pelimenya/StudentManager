@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using StudentManager.Context;
 using StudentManager.Pages.AdminPages;
+using StudentManager.Pages.UserPages;
 
 namespace StudentManager.Pages.HomePages
 {
@@ -36,7 +37,7 @@ namespace StudentManager.Pages.HomePages
                         }
                         else
                         {
-                       //     NavigationService.Navigate(new UserMenu());
+                         NavigationService.Navigate(new UserMenu());
                         }
                     }
                     else
